@@ -3,7 +3,6 @@
 @section('content')
 
 <div id="clear">
-  <p>{{Session::get('username')}}さん</p>
   <p>ようこそ！AtlasSNSへ！</p>
   <p>ユーザー登録が完了しました。</p>
   <p>早速ログインをしてみましょう。</p>

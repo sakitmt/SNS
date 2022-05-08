@@ -2,7 +2,7 @@
 
 @section('content')
 
-{!! Form::open() !!}
+{!! Form::open(['url' => '/register']) !!}
 
 <h2>新規ユーザー登録</h2>
 

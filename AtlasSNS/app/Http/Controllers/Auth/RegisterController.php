@@ -79,10 +79,16 @@ class RegisterController extends Controller
         if($request->isMethod('post')){
             $data = $request->input();
 
+            $request->session()->put('username');
+
             $this->create($data);
             $request->session()->put('username');
             return redirect('added')->with('username',$data['username']);
+<<<<<<< .merge_file_xDNW1y
         }
+=======
+
+>>>>>>> .merge_file_gkDsvQ
         return view('auth.register');
     }
 
