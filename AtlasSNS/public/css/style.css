@@ -7,6 +7,18 @@ body{
 header{
     background:#186AC9;
 }
+.global{
+    transition: .35s ease-in-out;
+    position: fixed;
+/*    display: flex;*/
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+/*    width: 100%;
+    height: 60px;
+    padding: 4%;*/
+    z-index: 3;
+}
 
 /* main content */
 #row{
