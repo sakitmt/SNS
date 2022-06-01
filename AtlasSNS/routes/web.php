@@ -24,7 +24,7 @@ Route::get('/login', 'Auth\LoginController@login')->name('login');
 //->name('login') ルーティングに'login'という名前をつけ、別のファイルからRoute('login')を指定した時に/loginに飛ぶように設定できる。
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::get('/register', 'Auth\RegisterController@register');
+Route::get('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');
