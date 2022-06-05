@@ -23,12 +23,18 @@
 Route::get('/login', 'Auth\LoginController@login')->name('login');
 //->name('login') ルーティングに'login'という名前をつけ、別のファイルからRoute('login')を指定した時に/loginに飛ぶように設定できる。
 Route::post('/login', 'Auth\LoginController@login');
+//ログイン画面
 
 Route::get('/register', 'Auth\RegisterController@register')->name('register');
 Route::post('/register', 'Auth\RegisterController@register');
+//register=登録　registerControllerは新規登録について記載している。バリデーション機能も含む。正常に登録が完了したら↓addedに進む。
 
 Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
+//登録完了のメッセージ画面
+
+Route::get('/logout', 'Auth\LoginController@logout');
+//ログアウト
 
 //ログイン中のページ
 Route::middleware('auth')->group(function() {
@@ -36,7 +42,7 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/profile','UsersController@profile')->name('profile');
 
-    Route::get('/search','UsersController@index')->name('search');
+    Route::get('/search','UsersController@search')->name('search');
 
     Route::get('/follow-list','PostsController@index')->name('follow');
     Route::get('/follower-list','PostsController@index')->name('follower');

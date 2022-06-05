@@ -48,11 +48,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $validator = Validator::make($data->all(), [
+        return Validator::make($data, [
             'username' => 'required|string|min:2|max:12',
             'mail' => 'required|string|email|min:5|max:40|unique:users',
             'password' => 'required|string|min:8|max:20|confirmed',
-            'password-confirm' => 'required|string|min:8|max:20|confirmed'
+            'password_confirmation' => 'required|string|min:8|max:20'
         ]);
     }
 
@@ -64,6 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         return User::create([
             'username' => $data['username'],
             'mail' => $data['mail'],
@@ -79,17 +80,17 @@ class RegisterController extends Controller
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
-            $this->validator($data);
-            if ($request->fails()) {
+            $validate = $this->validator($data);
+            if ($validate->fails()) {
                 return redirect ('/register')
                 ->withInput()
-                ->withErrors($request);
+                ->withErrors($validate);
             } else {
+                $this->create($data);
+                $request->session()->put('username');
+                return redirect('added')->with('username',$data['username']);
                 return view('auth.added');
             }
-            $this->create($data);
-            $request->session()->put('username');
-            return redirect('added')->with('username',$data['username']);
         }
         return view('auth.register');
     }
@@ -97,4 +98,5 @@ class RegisterController extends Controller
     public function added(){
         return view('auth.added');
     }
+
 }
