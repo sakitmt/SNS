@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
@@ -19,42 +20,42 @@
     <link rel="apple-touch-icon-precomposed" href="画像のURL" />
     <!--OGPタグ/twitterカード-->
 </head>
+
 <body>
     <header>
-        <div id = "head">
-        <h1><a href="/top"><img class="img_atlas" src="images/atlas.png" alt="Atlas"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/icon1.png" alt="ナビゲーションボタン">
-                </p>
-                </div>
-                <div>
+        <div id="head">
+            <h1><a href="/top"><img class="img_atlas" src="images/atlas.png" alt="Atlas"></a></h1>
+            <div id="head-menu">
+                <p>〇〇あああああああああさん</p>
                 <nav class="global">
-                    <ul class="global down-menu">
+                    <input type="checkbox" id="check"></input>
+                    <label class="down-menu_c" for="check">∨</label>
+                    <!--<label class="down-menu_o" for="check">^</label>-->
+                    <ul class="global nav-menu">
                         <li><a href="/top">ホーム</a></li>
                         <li><a href="/profile">プロフィール編集</a></li>
                         <li><a href="/logout">ログアウト</a></li>
                     </ul>
                 </nav>
-                </div>
+                <img src="" alt="ログインした人の画像"><!--ログインした人の画像-->
             </div>
         </div>
     </header>
     <div id="row">
         <div id="container">
             @yield('content')
-        </div >
+        </div>
         <div id="side-bar">
             <div id="confirm">
                 <p>〇〇さんの</p>
                 <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                    <p>フォロー数</p>
+                    <p>〇〇名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                    <p>フォロワー数</p>
+                    <p>〇〇名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
@@ -66,4 +67,5 @@
     <script src="JavaScriptファイルのURL"></script>
     <script src="JavaScriptファイルのURL"></script>
 </body>
+
 </html>

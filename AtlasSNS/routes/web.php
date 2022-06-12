@@ -47,3 +47,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/follow-list','PostsController@index')->name('follow');
     Route::get('/follower-list','PostsController@index')->name('follower');
 });
+
+
+App::setLocale('ja');
+//config/app.phpの内容を変更'locale' => 'ja',しても変わらず、ここで上記の宣言をしたら翻訳された

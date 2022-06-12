@@ -6,19 +6,60 @@ body{
 /* header */
 header{
     background:#186AC9;
+    max-width: auto;
 }
-.global{
-    transition: .35s ease-in-out;
-    position: fixed;
-/*    display: flex;*/
-    justify-content: space-between;
+#head {
+    display: flex;
     align-items: center;
-    background-color: #ffffff;
-/*    width: 100%;
-    height: 60px;
-    padding: 4%;*/
+}
+.img_atlas {
+    height: 35px;
+    text-align: center;
+    margin-left: 20px;
+}
+#head-menu {
+    margin-left: auto;
+    margin-right: 30px;
+    text-align: center;
+    display: flex;
+}
+.global {/*アコーディオンメニュー全体*/
+    transition: .35s ease-in-out;
+    align-items: center;
     z-index: 3;
 }
+#check {
+    display: none;
+}
+.down-menu_c {/*ドロップダウンボタン*/
+    background-color: transparent;
+    /*color: #fff;*/
+    display: block;
+    margin-bottom: 1px;
+    padding: 10px;
+}
+
+.nav-menu {/*メニュー本体*/
+    border: 1px solid #333;
+    height: 0;
+    opacity: 0;
+    padding: 0 10px;
+    transition: .5s;
+    visibility: hidden;
+}
+
+#check:checked + .down-menu_c + .nav-menu {
+    height: 40px;
+    opacity: 1;
+    padding: 10px;
+    visibility: visible;
+}
+
+/*アコーディオンメニューでやることメモ
+ブロックにする
+ブロックを非表示にする
+チェックされた時、要素を表示するように書く
+transitionの値を書く*/
 
 /* main content */
 #row{
