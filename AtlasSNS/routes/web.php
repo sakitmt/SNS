@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/follow-list','PostsController@index')->name('follow');
     Route::get('/follower-list','PostsController@index')->name('follower');
+
+    Route::post('/top','PostsController@index')->name('posts');
 });
 
 

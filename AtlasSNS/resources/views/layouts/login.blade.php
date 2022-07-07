@@ -26,18 +26,18 @@
         <div id="head">
             <h1><a href="/top"><img class="img_atlas" src="images/atlas.png" alt="Atlas"></a></h1>
             <div id="head-menu">
-                <p>〇〇あああああああああさん</p>
+                <p class="username">{{ Auth::user()->username }}さん</p>
                 <nav class="global">
                     <input type="checkbox" id="check"></input>
-                    <label class="down-menu_c" for="check">∨</label>
-                    <!--<label class="down-menu_o" for="check">^</label>-->
+                    <label class="down-menu" for="check"></label>
                     <ul class="global nav-menu">
-                        <li><a href="/top">ホーム</a></li>
-                        <li><a href="/profile">プロフィール編集</a></li>
-                        <li><a href="/logout">ログアウト</a></li>
+                        <li><a class="home-a" href="/top">HOME</a></a></li>
+                        <li class="prof-a"><a class="prof-w" href="/profile">プロフィール編集</a></li>
+                        <li><a class="logout-a" href="/logout">ログアウト</a></li>
                     </ul>
                 </nav>
-                <img src="" alt="ログインした人の画像"><!--ログインした人の画像-->
+                <img class="user-img" src="images/icon1.png" alt="ログインした人の画像">
+                <!--ログインした人の画像-->
             </div>
         </div>
     </header>
@@ -47,10 +47,11 @@
         </div>
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                     <p>フォロー数</p>
-                    <p>〇〇名</p>
+                    <p>人
+                    </p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
