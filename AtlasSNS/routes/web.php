@@ -39,6 +39,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 //ログイン中のページ
 Route::middleware('auth')->group(function() {
     Route::get('/top','PostsController@index')->name('top');
+    Route::post('/top','PostsController@post')->name('posts');
 
     Route::get('/profile','UsersController@profile')->name('profile');
 
@@ -46,8 +47,6 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/follow-list','PostsController@index')->name('follow');
     Route::get('/follower-list','PostsController@index')->name('follower');
-
-    Route::post('/top','PostsController@index')->name('posts');
 });
 
 
