@@ -52,7 +52,23 @@ class PostsController extends Controller
         return redirect('/top'); // リクエスト送ったページに戻る（つまり、/topにリダイレクトする）
     }
 
-    public function update(){
-        
+    public function updateForm($id)
+    {
+        $post = Post::find($id);
+        return redirect('/top', compact('post'));
+    }
+
+    public function update(Request $request){
+        $id = $request->input('id');
+        $up_post = $request->input('upPost');
+        \DB::table('posts')
+            ->where('id', $id)
+            ->update(
+                ['post' => $up_post]
+            );
+
+            return redirect('/top');
+            // 投稿内容をそのまま表示させる→編集を保存して元の画面に戻る
+            // IDを読み込ませる
     }
 }
