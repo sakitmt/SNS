@@ -40,7 +40,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::middleware('auth')->group(function() {
     Route::get('/top','PostsController@index')->name('top');
     Route::post('/top','PostsController@post')->name('posts');
-    Route::put('/top/{id}','PostsController@updateForm')->name('updateForm');
+    Route::post('/update','PostsController@update');
+    Route::get('/post/{id}/delete','PostsController@delete');
 
     Route::get('/profile','UsersController@profile')->name('profile');
 

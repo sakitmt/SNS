@@ -6,7 +6,7 @@
     <!-- CDN読み込み -->
     <!-- 「CDN」はContent Delivery Networkの略で、簡単に言うとインターネット経由でファイルを配信する仕組みのこと -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <link rel="stylesheet" href="{{ asset('js/script.js') }}">
+    <script src="js/script.js"></script>
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />

@@ -49,20 +49,37 @@
             </div>
             <div class="area-btn">
                 <div>
-                    <!--    編集アイコン    -->
-                    <input class="edit_btn" type="image" src="images/edit.png" alt="送信ボタン">
+                    <div class="content">
+                        <!-- 投稿の編集ボタン -->
+                        <a class="js-modal-open" href="" post={{ $post -> post }} post_id={{ $post -> id }}>
+                            <input class="edit_btn" type="image" src="images/edit.png" alt="送信ボタン">
+                        </a>
+                    </div>
                     <!-- 各投稿にIDが振られているので、そのIDで判別する。 -->
                     <!--    削除アイコン    -->
-                    <input class="trash_btn" type="image" src="images/trash.png" alt="送信ボタン">
+                    <a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')" ><img class="trash-img" src="images/trash.png" alt="削除"></a>
+                    <!-- form :利用者の入力が必要なとき　a :ボタン操作のみなど  -->
                 </div>
             </div>
         </div>
     </div>
 </form>
 @endforeach
-
-<div class="update_area">
-    更新エリア
+<!-- モーダルの中身 -->
+<div class="modal js-modal">
+    <div class="modal__bg js-modal-close">
+    </div>
+    <div class="modal__content">
+        <form action="/update" method="post">
+            <textarea name="upPost" class="modal_post"></textarea>
+            <input type="hidden" name="id" class="modal_id" value="">
+            <a class="js-modal-update" href="" post_id={{ $post -> id }}>
+                <input type="image" src="images/edit.png" value="更新">
+            </a>
+            @csrf
+        </form>
+       <a class="js-modal-close" href="">閉じる</a>
+    </div>
 </div>
 
 @endsection
