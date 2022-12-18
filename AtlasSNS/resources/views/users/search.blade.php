@@ -9,16 +9,21 @@
     <input type="submit" value="検索" class="btn btn-info">
 <!-- 検索ボタンが押されたら検索ワードを出す -->
 </form>
-<!-- 検索ボタン  -->
+検索ワード：{{ $keyword }}
 
-検索結果一覧
+<!-- 検索結果一覧 -->
 
-<div class="" >
+@foreach($data as $data)
+
+<div class="">
   <div class="">
-  {{ $data -> appends(Request::only('keyword')) }}
+  {{ $data->username }}
+  </div>
+  <div>
+  <button type="button" class="btn btn-primary">フォローする</button>
   </div>
 </div>
 
-
+@endforeach
 
 @endsection

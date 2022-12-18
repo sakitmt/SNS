@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -17,5 +18,6 @@ class UsersTableSeeder extends Seeder
             'mail' => 'test@mail',
             'password' => bcrypt('test111')
         ]);
+
     }
 }
