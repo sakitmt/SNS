@@ -18,9 +18,12 @@
 <div class="">
   <div class="">
   {{ $data->username }}
+  <!--{{ $data->id }}-->
+
   </div>
   <div>
-  <button type="button" class="btn btn-primary">フォローする</button>
+  <a type="button" class="btn btn-primary" href="/follow/{{$data->id}}/follows">フォローする</a>
+  <a type="button" class="btn btn-primary" href="/follow/{{$data->id}}/nofollow">フォロー解除する</a>
   </div>
 </div>
 
