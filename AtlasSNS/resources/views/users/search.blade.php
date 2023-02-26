@@ -16,30 +16,18 @@
 
 <div class="">
 @foreach($data as $data)
-@if(Auth::id() != $data->id)
 <ul>
   <li>
   {{ $data-> username }}
   @if(Auth()->user()->isFollowing($data->id))
-  <form action="{{ route('unFollow', ['id' => $data->id]) }}" method="POST">
-    {{ csrf_field() }}
-    {{ method_field('DELETE') }}
-
     <a type="button" class="btn btn-primary" href="/follow/{{$data->id}}/unFollow">フォロー解除する</a>
-  </form>
-
-  @else
-  <form action="{{ route('follow', ['id' => $data->id]) }}" method="POST">
-    {{ csrf_field() }}
-
-  <a type="button" class="btn btn-primary" href="/follow/{{$data->id}}/follows">フォローする</a>
-  </form>
+    @else
+    <a type="button" class="btn btn-primary" href="/follow/{{$data->id}}/follows">フォローする</a>
   @endif
 
-</li>
+  </li>
 </ul>
 
-@endif
 @endforeach
 </div>
 @endsection

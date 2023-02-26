@@ -27,6 +27,7 @@ class UsersController extends Controller
     }
     //　フォロー
     public function follows(User $id){ //$idには検索結果で出てきた相手の情報が入っている？
+        $id = new User();
         $follows = Auth::id()->get(); //$followsを呼んだらログインしているユーザーのIDを持ってくる
 
         \DB::table('follows')->insert([ //followsがブレードから呼ばれたら、以下の処理を行う
