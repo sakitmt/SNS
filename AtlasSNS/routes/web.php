@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/search','UsersController@search')->name('search');
 
     Route::get('/follow/{id}/follows','UsersController@follows')->name('follow');
-    Route::get('/follow/{id}/nofollow','UsersController@nofollow');
+    Route::get('/follow/{id}/unFollow','UsersController@unFollow');
     Route::get('/follower-list','PostsController@index')->name('follower');
 });
 
