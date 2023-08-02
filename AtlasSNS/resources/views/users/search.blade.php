@@ -31,7 +31,7 @@
 </div>
 
 <div>
-@foreach($all_user as $user)
+@foreach($all_users as $user)
 <div class="flex-box users-list">
 
   <div class="div">

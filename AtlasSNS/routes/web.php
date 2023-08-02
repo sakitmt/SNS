@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/profile','UsersController@profile')->name('profile');
 
+    Route::get('/profile/{userdata}','UsersController@userdata')->name('other');
+
     Route::get('/search','UsersController@search')->name('search');
 
     Route::get('/follow/{$id}/follow','UsersController@follow')->name('follow');
