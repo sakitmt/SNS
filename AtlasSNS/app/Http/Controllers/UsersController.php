@@ -3,48 +3,65 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\User;
-use Auth;
+use App\Post;
 use App\Follow;
 
 class UsersController extends Controller
 {
     //
     public function profile(){
-        return view('users.profile');
+
+        $auth = Auth::user();
+
+        return view('users.profile',[ 'auth' => $auth ]);
     }
 
-    public function search(Request $request) {
-        $keyword = $request->input('keyword');
-        $query = User::query();
-        if(!empty($keyword)){
-            $query->where('username','like',"%{$keyword}%");
+    public function search(Request $request,User $user) {
+        $search = $request->input('search');
+
+        if(!empty($search)){
+            $all_users = \DB::table('users')
+            ->where('username', 'LIKE', "%{$search}%")
+            ->get();
         }
-        //oderBy- >第1引数にいれたカラムについて、第2引数にいれる順（降順または昇順など）で並び替える。
-        $data = $query->orderBy('username','asc')->get();
+        else{
+            // $all_users = $user->getAllUsers(auth()->user()->id);
+            // $this->Where('id', '<>', $user_id)->paginate(5);
 
-        return view('users.search', ['data'=>$data, 'keyword'=>$keyword]);
+            $all_users = \DB::table('users')
+            ->where('id', '!=', auth()->user()->id)
+            ->get();
+        }
+
+        return view('users.search', ['all_users'  => $all_users,'keyword'  => $search]);
     }
+
     //　フォロー
-    public function follows(User $id){ //$idには検索結果で出てきた相手の情報が入っている？
-        $id = new User();
-        $follows = Auth::id()->get(); //$followsを呼んだらログインしているユーザーのIDを持ってくる
-
-        \DB::table('follows')->insert([ //followsがブレードから呼ばれたら、以下の処理を行う
-            'following_id'=> $follows,  //followsテーブルのfollowing_idカラムに$followsの値(ログインユーザーのID)を追加
-            'followed_id'=> $id,        //followed_idカラムに$idの値(検索結果で出てきた相手の情報)を追加
-        ]);
-
-        return redirect('search') ->with (['id'=>$follows]);
+    public function follow(User $user)
+    {
+        $follower = auth()->user();
+        // フォローしているか
+        $is_following = $follower->isFollowing($user->id);
+        if(!$is_following) {
+            // フォローしていなければフォローする
+            $follower->follow($user->id);
+            return back();
+        }
     }
 
     //　フォロー解除
-    public function unFollow($id){
-        \DB::table('follows')
-            ->where(['followed_id'=> $id, 'following_id'=> Auth::user()->id])
-            ->delete();
-        $users = $unFollows ->get();
-        return redirect('search', ['id'=>$users]);
+    public function unfollow(User $user)
+    {
+        $follower = auth()->user();
+        // フォローしているか
+        $is_following = $follower->isFollowing($user->id);
+        if($is_following) {
+            // フォローしていればフォローを解除する
+            $follower->unfollow($user->id);
+            return back();
+        }
     }
-
 }
