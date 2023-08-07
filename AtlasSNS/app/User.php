@@ -60,7 +60,7 @@ class User extends Authenticatable
         return $this->follows()->attach($user_id);
     }
     // フォロー解除する
-    public function unfollow(Int $user_id)
+    public function unFollow(Int $user_id)
     {
         return $this->follows()->detach($user_id);
     }
@@ -71,6 +71,6 @@ class User extends Authenticatable
 
     public function isFollowed(Int $user_id) {
         $auth_id = auth()->user()->id;
-        return (boolean) $this->follows()->where('following_id', $user_id)->first(['follows.id']);
+        return (boolean) $this->followers()->where('following_id', $user_id)->first(['follows.id']);
     }
 }
