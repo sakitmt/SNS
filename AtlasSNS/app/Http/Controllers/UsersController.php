@@ -64,4 +64,48 @@ class UsersController extends Controller
             return back();
         }
     }
+
+    public function follow_list(User $user){
+
+        // $all_posts = \DB::table('posts')->orderBy('created_at', 'DESC')->get();
+
+        $all_users = $user->getAllUsers(auth()->user()->id);
+
+        $all_posts = \DB::table('posts')
+            ->select('users.id', 'users.username', 'users.images', 'posts.user_id', 'posts.post', 'posts.created_at')
+            ->leftjoin('users', 'users.id', '=', 'posts.user_id')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $all_follows = \DB::table('follows')
+            ->Where('following_id', Auth::id())
+            ->get('followed_id');
+
+        return view('follows.followlist', [
+            'all_users'  => $all_users,
+            'all_posts'  => $all_posts,
+            'all_follows'  => $all_follows,
+        ]);
+    }
+
+    public function follower_list(User $user){
+
+        $all_users = $user->getAllUsers(auth()->user()->id);
+
+        $all_posts = \DB::table('posts')
+            ->select('users.id', 'users.username', 'users.images', 'posts.user_id', 'posts.post', 'posts.created_at')
+            ->leftjoin('users', 'users.id', '=', 'posts.user_id')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        $all_follows = \DB::table('follows')
+            ->Where('following_id', Auth::id())
+            ->get('followed_id');
+
+        return view('follows.followerlist', [
+            'all_users'  => $all_users,
+            'all_posts'  => $all_posts,
+            'all_follows'  => $all_follows,
+        ]);
+    }
 }

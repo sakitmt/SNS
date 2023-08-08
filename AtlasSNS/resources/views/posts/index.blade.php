@@ -8,7 +8,7 @@
             <img class="user-icon" src="images/icon1.png" alt="アイコン"> <!-- ユーザーアイコンはユーザーによって変わるように修正 -->
         </div>
         <div class="post-content-area">
-            <input type="textarea" class="post-content" name="post_con" placeholder="投稿内容を入力してください。">
+            <input type="textarea" class="post-content" name="post_con" wrap="soft" placeholder="投稿内容を入力してください。">
         </div>
         <div class="post-btn-area">
             <input class="post-btn" type="image" src="images/post.png" alt="送信ボタン">
@@ -48,18 +48,17 @@
                 <tr>{{ $post -> post }}</tr>
             </div>
             <div class="area-btn">
-                <div>
-                    <div class="content">
-                        <!-- 投稿の編集ボタン -->
-                        <a class="js-modal-open" href="" post={{ $post -> post }} post_id={{ $post -> id }}>
-                            <input class="edit_btn" type="image" src="images/edit.png" alt="送信ボタン">
-                        </a>
-                    </div>
-                    <!-- 各投稿にIDが振られているので、そのIDで判別する。 -->
-                    <!--    削除アイコン    -->
-                    <a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')" ><img class="trash-img" src="images/trash.png" alt="削除"></a>
-                    <!-- form :利用者の入力が必要なとき　a :ボタン操作のみなど  -->
+                <div class="content">
+                    <!-- 投稿の編集ボタン -->
+                    <a class="js-modal-open" href="" post={{ $post -> post }} post_id={{ $post -> id }}>
+                        <input class="edit_btn" type="image" src="images/edit.png" alt="送信ボタン" >
+                    </a>
                 </div>
+                <!-- 投稿の削除アイコン -->
+                <a class="trash-btn" href="/post/{{$post->id}}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')" >
+                    <img class="trash-img" src="images/trash.png" alt="削除" onmouseover="this.src='images/trash-h.png'" onmouseout="this.src='images/trash.png'">
+                </a>
+                <!-- form :利用者の入力が必要なとき　a :ボタン操作のみなど  -->
             </div>
         </div>
     </div>

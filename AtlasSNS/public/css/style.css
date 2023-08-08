@@ -141,11 +141,11 @@ header{
 }
 /* 投稿フォーム */
 .post-area {
-    height: 100px;
+    height: 150px;
     width: 100%;
     display: flex;
     padding-top: 34px;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
     border-bottom: solid 7px #E0E0E0;
 }
 .user-icon-area {
@@ -159,6 +159,7 @@ header{
 .post-content-area {
     flex-basis: 60%;
     padding: 0 18px 18px 18px;
+    top: 0;
 }
 .post-content-area :focus {
     outline: none;
@@ -167,19 +168,22 @@ header{
     border: none;  /* 枠線 */
     background-color: transparent;  /* 背景色 */
     width: 100%;             /* 横幅 */
-    height: 100%;        /* 高さ */
+    /*height: 100%;*/        /* 高さ */
     resize: none;
 }
 textarea::placeholder {
     color: #D6D6D6;
     font-size: 18px;
+    word-wrap: break-word;
+    white-space: normal;
 }
 .post-btn-area {
     flex-basis: 25%;
+    margin-top: auto;
 }
 .post-btn {
     height: 45px;
-    padding-top: 50px;
+    padding-bottom: 10px;
 }
 /* 投稿表示エリア */
 .area-browsing {
@@ -209,18 +213,17 @@ textarea::placeholder {
     padding-top: 15px;
 }
 .area-btn {
-    text-align: right;
-    margin-right: 10px;
+    display: flex;
+    justify-content:flex-end;
 }
 .edit_btn {
     height: 35px;
 }
-.trash_btn {
-    height: 35px;
+.trash-btn {
+    height: 45px;
 }
 .content{
-    margin: 0 auto;
-    padding: 40px;
+
 }
 .modal{
     display: none;
@@ -244,9 +247,7 @@ textarea::placeholder {
     transform: translate(-50%,-50%);
     width: 60%;
 }
-.btn-danger {
-    background-color: initial;
-}
+
 .trash-img {
-    height: 45px;
+    height: 35px;
 }
