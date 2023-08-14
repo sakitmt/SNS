@@ -12,13 +12,14 @@
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
+
     <!-- BootstrapのCSS読み込み -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- jQuery読み込み -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- BootstrapのJS読み込み -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
     <!--スマホ,タブレット対応-->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <!--サイトのアイコン指定-->
@@ -46,8 +47,10 @@
                         <li><a class="logout-a" href="/logout">ログアウト</a></li>
                     </ul>
                 </nav>
-                <img class="user-img" src="images/icon1.png" alt="ログインした人の画像">
-                <!--ログインした人の画像-->
+                <div class="user-icon"> <!--ログインした人の画像-->
+                    <img class="rounded-circle"  width="50" height="50" src="{{ asset('storage/user_images/' .auth()->user()->images )}}">
+                </div>
+
             </div>
         </div>
     </header>
@@ -57,19 +60,19 @@
         </div>
         <div id="side-bar">
             <div id="confirm">
-                <p>{{ Auth::user()->username }}さんの</p>
-                <div>
-                    <p>フォロー数</p>
-                    <p class="count">{{ \App\Follow::where('following_id', Auth::id())->count() }}人</p>
+                <p class="side-bae-text">{{ Auth::user()->username }}さんの</p>
+                <div class="side-bae-text">
+                    <p>フォロー数&emsp;{{ \App\Follow::where('following_id', Auth::id())->count() }}人</p>
                 </div>
-                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
-                <div>
-                    <p>フォロワー数</p>
-                    <p class="count">{{ \App\Follow::where('followed_id', Auth::id())->count() }}人</p>
+                <button class="btn btn-primary"><a href="/follow-list">フォローリスト</a></button>
+                <div class="side-bae-text">
+                    <p>フォロワー数&emsp;{{ \App\Follow::where('followed_id', Auth::id())->count() }}人</p>
                 </div>
-                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                <button class="btn btn-primary"><a href="/follower-list">フォロワーリスト</a></button>
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <div class="btn-search">
+                <button class="btn btn-primary "><a href="/search">ユーザー検索</a></button>
+            </div>
         </div>
     </div>
     <footer>

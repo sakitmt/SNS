@@ -5,10 +5,10 @@
     <form class="post-area" action="{{ url('top') }}" method="POST">
     {{ csrf_field() }}
         <div class="user-icon-area">
-            <img class="user-icon" src="images/icon1.png" alt="アイコン"> <!-- ユーザーアイコンはユーザーによって変わるように修正 -->
+            <img class="rounded-circle"  width="50" height="50" src="{{ asset('storage/user_images/' .auth()->user()->images )}}">
         </div>
         <div class="post-content-area">
-            <input type="textarea" class="post-content" name="post_con" wrap="soft" placeholder="投稿内容を入力してください。">
+            {{ Form::textarea("post_con",null,['class' => 'input post-content', 'placeholder' => '投稿内容を入力してください。', 'cols'=>'70' , 'rows' => '5']) }}
         </div>
         <div class="post-btn-area">
             <input class="post-btn" type="image" src="images/post.png" alt="送信ボタン">
@@ -30,7 +30,7 @@
     @csrf
     <div class="area-browsing">
         <div class="area-user-icon"><!--    ユーザーアイコン    -->
-           <img class="user-icon" src="images/icon1.png" alt="アイコン"> <!-- ユーザーアイコンはユーザーによって変わるように修正 -->
+            <img class="user-icon rounded-circle"  width="50" height="50" src="{{ asset('storage/user_images/' .auth()->user()->images )}}"> <!-- ユーザーアイコンはユーザーによって変わるように修正 -->
         </div>
         <div class="area-contents">
             <div class="area-username">
