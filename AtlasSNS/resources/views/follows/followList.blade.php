@@ -1,16 +1,16 @@
 @extends('layouts.login')
 
 @section('content')
-    <div class="flex-box icon-area">
+    <div class="follow-list post-area"><!--flex①-->
 
-        <div class="follow-title">
+        <div class="title follow-title"><!--①幅比率-->
             <P>Follow List</P>
         </div>
 
-        <div class="icon-margin flex-box">
+        <div class="follow-icon-list"><!--①幅比率--><!--flex②-->
             @foreach ($all_users as $user)
             @if (auth()->user()->isFollowing($user->id))
-                <div class="icon-space">
+                <div class="followicon"><!--②幅比率？-->
                     <div>
                         <a href="{{ route('other',['userdata'=>$user->id]) }}">
                             <img src="{{ asset('storage/user_images/' .$user->images )}}" class="rounded-circle" width="50" height="50">
@@ -31,22 +31,22 @@
 
     @foreach ($all_posts as $post)
         @if(auth()->user()->isFollowing($post->user_id))
-    <div class="tweet">
-        <div class="flex-box">
-            <div class="tweet-icon">
+    <div class="area-browsing">
+        <div class="">
+            <div class="area-user-icon">
                 <img src="{{ asset('storage/user_images/' .$post->images )}}" class="rounded-circle" width="50" height="50">
             </div>
 
-            <div class="tweet-data">
+            <div class="area-contents">
 
-                <div class="flex-box">
-                    <div class="tweet-username">
+                <div class="area-username">
+                    <div class="area-username-name">
                         <P>{{ $post->username }}</P>
                     </div>
 
                 </div>
 
-                <div>{{ $post->post }}</div>
+                <div class="area-post">{{ $post->post }}</div>
 
 
 
@@ -55,7 +55,7 @@
         </div>
 
         <div>
-            <div class="tweet-time">
+            <div class="">
                 <div><p>{{ $post->created_at }}</p></div>
             </div>
 

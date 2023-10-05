@@ -186,6 +186,36 @@ class UsersController extends Controller
         return view('users.search', ['all_users'  => $all_users,'keyword'  => $search]);
     }
 
+    public function userdata(User $user, Post $post, Follow $follow ,$userdata)
+    {
+
+        $user = User::find($userdata);
+        $login_user = auth()->user();
+        $is_following = $login_user->isFollowing($userdata);
+        $is_followed = $login_user->isFollowed($userdata);
+        $timelines = $post->getUserTimeLine($userdata);
+        $tweet_count = $post->getTweetCount($userdata);
+        $follow_count = $follow->getFollowCount($userdata);
+        $follower_count = $follow->getFollowerCount($userdata);
+
+        $all_posts = \DB::table('posts')
+            ->select('users.id', 'users.username', 'users.images', 'posts.user_id', 'posts.post', 'posts.created_at')
+            ->leftjoin('users', 'users.id', '=', 'posts.user_id')
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('users.other', [
+            'user'           => $user,
+            'is_following'   => $is_following,
+            'is_followed'    => $is_followed,
+            'timelines'      => $timelines,
+            'tweet_count'    => $tweet_count,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count,
+            'all_posts'  => $all_posts
+        ]);
+    }
+
 
     //　フォロー
     public function follow(User $user)
@@ -213,10 +243,8 @@ class UsersController extends Controller
         }
     }
 
-    public function follow_list(User $user){
-
-        // $all_posts = \DB::table('posts')->orderBy('created_at', 'DESC')->get();
-
+    public function follow_list(User $user)
+    {
         $all_users = $user->getAllUsers(auth()->user()->id);
 
         $all_posts = \DB::table('posts')

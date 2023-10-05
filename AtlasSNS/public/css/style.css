@@ -321,3 +321,23 @@ textarea::placeholder {
     justify-content: center;
     padding-top: 20px;
 }
+.follow-list {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.follow-title {
+    font-size: 25px;
+    width: 30%;
+    text-align: center;
+}
+.follow-list {
+    justify-content: center;
+}
+.follow-icon-list {
+    display: flex;
+    width: 70%;
+}
+.followicon {
+    padding-right: 7px;
+}

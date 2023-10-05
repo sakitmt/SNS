@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="flex-box icon-area">
+    <div class="flex-box icon-area post-area">
 
         <div class="follow-title">
             <P>Follower List</P>
@@ -50,7 +50,7 @@
             </div>
 
             <div>
-                <div class="tweet-time">
+                <div class="">
                     <div><p>{{ $post->created_at }}</p></div>
                 </div>
 
