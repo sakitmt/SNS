@@ -24,43 +24,25 @@
     </div>
 
 
-
-
-
-
-
     @foreach ($all_posts as $post)
         @if(auth()->user()->isFollowing($post->user_id))
-    <div class="area-browsing">
-        <div class="">
+        <div class="area-browsing">
             <div class="area-user-icon">
                 <img src="{{ asset('storage/user_images/' .$post->images )}}" class="rounded-circle" width="50" height="50">
             </div>
 
             <div class="area-contents">
-
                 <div class="area-username">
                     <div class="area-username-name">
                         <P>{{ $post->username }}</P>
                     </div>
-
+                    <div class="area-daytime">
+                        <p>{{ $post->created_at }}</p>
+                    </div>
                 </div>
-
                 <div class="area-post">{{ $post->post }}</div>
-
-
-
-
             </div>
         </div>
-
-        <div>
-            <div class="">
-                <div><p>{{ $post->created_at }}</p></div>
-            </div>
-
-        </div>
-    </div>
     @endif
 
 
